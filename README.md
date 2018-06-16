@@ -48,17 +48,26 @@ composer update
 
 Paso 4
 
+En la raiz del proyecto modificar en el archivo .env la linea que se describe a continuación con sus datos de conexión a su servidor MySql y el nombre de la base de datos
+
+```
+DATABASE_URL=mysql://usuario:contraseña@127.0.0.1:3306/baseDeDatos
+```
+
+
+Paso 5
+
 ```
 php bin console doctrine:database:create
 ```
 
-Paso 5
+Paso 6
 
 ```
 php bin console doctrine:schema:update --force
 ```
 
-Paso 5
+Paso 7
 
 ```
 php bin console doctrine:fixtures:load --append
