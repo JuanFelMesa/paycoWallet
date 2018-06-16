@@ -16,10 +16,51 @@ MySql Server
 NodeJs
 NPM
 Express
+Linux
+PHP
+Apache
 ```
 
 ### Instalación
 
+Se recomienda trabajar con virtual hosts debido a que esta aplicación está desarrollada con symfony 4.0
+
+Ejemplo de virtual host:
+
+```
+<VirtualHost *:80>
+    ServerName nombre del servidor dado en /etc/hosts
+    ServerAlias alias (recomendado el mismo ServerName)
+    DocumentRoot /Ruta/Hasta/El/Proyecto/paycoTest/soap/public
+    <Directory /Ruta/Hasta/El/Proyecto/paycoTest/soap/public>
+        AllowOverride None
+        Order Allow,Deny
+        Allow from All
+
+        <IfModule mod_rewrite.c>
+            Options -MultiViews
+            RewriteEngine On
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteRule ^(.*)$ index.php [QSA,L]
+        </IfModule>
+    </Directory>
+
+    # uncomment the following lines if you install assets as symlinks
+    # or run into problems when compiling LESS/Sass/CoffeeScript assets
+    # <Directory /var/www/project>
+    #     Options FollowSymlinks
+    # </Directory>
+
+    ErrorLog /var/log/apache2/project_error.log
+    CustomLog /var/log/apache2/project_access.log combined
+
+    # optionally set the value of the environment variables used in the application
+    #SetEnv APP_ENV prod
+    #SetEnv APP_SECRET <app-secret-id>
+    #SetEnv DATABASE_URL "mysql://db_user:db_pass@host:3306/db_name"
+</VirtualHost>
+
+```
 Este es el proceso de instalación para correr la aplicacion server SOAP
 
 Paso 1
