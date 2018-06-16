@@ -6,7 +6,7 @@ Este es un desarrollo de prueba para PAYCO
 
 Este proyecto está diseñado para correr en un ambiente LAMP
 
-### Prerequisitos
+### Prerrequisitos
 
 Debe tener instalado:
 
@@ -31,7 +31,7 @@ git clone https://github.com/ju4nr3v0l/paycoWallet.git
 Paso 2
 
 ```
-cd /xml
+cd /soap
 ```
 
 Paso 3
