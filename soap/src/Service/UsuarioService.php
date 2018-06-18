@@ -6,6 +6,7 @@ use App\Entity\Usuario\Usuario;
 use App\Entity\Billetera\Billetera;
 use Doctrine\ORM\EntityManagerInterface;
 
+
 class UsuarioService
 {
 
@@ -15,21 +16,21 @@ class UsuarioService
         $this->em = $entityManager;
     }
 
-    public function crearUsuario($params)
+    public function crearUsuario($nombre,$celular,$correo,$identificacion)
     {
 
 
         $response = array('success' => false,
             'cod_error' => '',
             'message_error' => '');
-            if ($params != null){
+            if ($nombre != null){
                 try{
                     $arUsuario = new Usuario();
                     $arBilletera = new Billetera();
-                    $arUsuario->setNombre($params['nombre']);
-                    $arUsuario->setCorreo($params['correo']);
-                    $arUsuario->setNumeroIdentificacion($params['numeroIdentificacion']);
-                    $arUsuario->setCelular($params['celular']);
+                    $arUsuario->setNombre($nombre);
+                    $arUsuario->setCorreo($correo);
+                    $arUsuario->setNumeroIdentificacion($identificacion);
+                    $arUsuario->setCelular($celular);
                     $this->em->persist($arUsuario);
                     $arBilletera->setUsuarioRel($arUsuario);
                     $arBilletera->setSaldo(0);
@@ -49,7 +50,7 @@ class UsuarioService
                 $response['cod_error'] = 415;
              }
 
-             return $response;
+                 return json_encode($response);
 
     }
 }

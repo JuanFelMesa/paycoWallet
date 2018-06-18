@@ -10,10 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Service\UsuarioService;
 
 
+
 class UsuarioController extends Controller
 {
     /**
-     * @Route("/usuario/soap/crear",name="usuarioSoap")
+     * @Route("/usuario/soap",name="usuarioSoap")
      */
     public function crearUsuario(Request $request,UsuarioService $usuarioService)
     {
@@ -30,7 +31,7 @@ class UsuarioController extends Controller
 
         $response->setContent(ob_get_clean());
 
-//        var_dump($response);die();
         return $response;
+
     }
 }

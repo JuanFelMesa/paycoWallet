@@ -18,18 +18,18 @@ class Usuario
     private $codigoUsuarioPk;
 
     /**
-     * @ORM\Column(name="numero_identificacion", type="string", nullable=true, length=25)
+     * @ORM\Column(name="numero_identificacion", type="string", nullable=true)
      */
     private $numeroIdentificacion;
 
     /**
-     * @ORM\Column(name="nombre", type="string", nullable=false, length=200)
+     * @ORM\Column(name="nombre", type="string", nullable=false)
      */
     private $nombre;
 
 
     /**
-     * @ORM\Column(name="celular", type="string", nullable=false, length=200)
+     * @ORM\Column(name="celular", type="string", nullable=false)
      */
     private $celular;
 

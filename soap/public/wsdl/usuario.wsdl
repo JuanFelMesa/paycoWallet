@@ -24,12 +24,12 @@
     </message>
 
     <message name="usuarioResponse">
-        <part name="return" type="xsd:string" />
+        <part name="response" type="xsd:string" />
     </message>
 
     <portType name="usuariowsdlPortType">
         <operation name="crearusuario">
-            <documentation>usuario World</documentation>
+            <documentation>usuario SOAP</documentation>
             <input message="tns:usuarioRequest"/>
             <output message="tns:usuarioResponse"/>
         </operation>
