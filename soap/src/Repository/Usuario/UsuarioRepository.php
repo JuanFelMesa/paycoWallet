@@ -16,6 +16,17 @@ class UsuarioRepository  extends ServiceEntityRepository
     }
 
 
+    public function validarUsuario($correo,$identificacion){
+        $em = $this->getEntityManager();
+        $usuarioIdentificacion = $em->getRepository('App:Usuario\Usuario')->findBy(array('numeroIdentificacion'=>$identificacion));
+        $usuarioCorreo = $em->getRepository('App:Usuario\Usuario')->findBy(array('correo'=>$correo));
+        if ($usuarioIdentificacion && $usuarioCorreo){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
 
 }

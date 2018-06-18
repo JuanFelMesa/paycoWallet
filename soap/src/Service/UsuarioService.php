@@ -27,16 +27,25 @@ class UsuarioService
                 try{
                     $arUsuario = new Usuario();
                     $arBilletera = new Billetera();
-                    $arUsuario->setNombre($nombre);
-                    $arUsuario->setCorreo($correo);
-                    $arUsuario->setNumeroIdentificacion($identificacion);
-                    $arUsuario->setCelular($celular);
-                    $this->em->persist($arUsuario);
-                    $arBilletera->setUsuarioRel($arUsuario);
-                    $arBilletera->setSaldo(0);
-                    $this->em->persist($arBilletera);
-                    $this->em->flush();
-                    $response['success'] = true;
+
+                    if($this->em->getRepository('App:Usuario\Usuario')->validarUsuario($correo,$identificacion)){
+                        $response['success'] = false;
+                        $response['cod_error'] = 416;
+                        $response['message_error'] = 'Ya existe ese correo o numero de identificacion';
+                    } else {
+                        $arUsuario->setNombre($nombre);
+                        $arUsuario->setCorreo($correo);
+                        $arUsuario->setNumeroIdentificacion($identificacion);
+                        $arUsuario->setCelular($celular);
+                        $this->em->persist($arUsuario);
+                        $arBilletera->setUsuarioRel($arUsuario);
+                        $arBilletera->setSaldo(0);
+                        $this->em->persist($arBilletera);
+                        $this->em->flush();
+                        $response['success'] = true;
+
+                    }
+
                 }
                 catch (\Exception $e){
                     $response['success'] = false;
