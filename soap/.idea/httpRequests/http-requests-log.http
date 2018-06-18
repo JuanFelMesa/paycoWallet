@@ -1,0 +1,18 @@
+GET http://soap.payco.com/index.php/usuario/crear?wsdl=
+Accept:*/*
+Cache-Control:no-cache
+
+###
+
+GET http://soap.payco.com/index.php/usuario/crear
+Accept:*/*
+Cache-Control:no-cache
+
+###
+
+GET http://soap.payco.com/index.php/usuario/crear
+Accept:*/*
+Cache-Control:no-cache
+
+###
+

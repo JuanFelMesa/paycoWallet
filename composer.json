@@ -1,0 +1,5 @@
+{
+    "require-dev": {
+        "sensiolabs/security-checker": "^4.1"
+    }
+}
