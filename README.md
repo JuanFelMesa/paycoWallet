@@ -89,10 +89,21 @@ composer update
 
 Paso 5
 
-En la raiz del proyecto modificar en el archivo .env la linea que se describe a continuación con sus datos de conexión a su servidor MySql y el nombre de la base de datos
+En la raiz del proyecto modificar en el archivo .env la linea que se describe a continuación con sus datos de conexión a su servidor MySql y el nombre de la base de datos. 
 
 ```
 DATABASE_URL=mysql://usuario:contraseña@127.0.0.1:3306/baseDeDatos
+```
+
+Además se debe modificar el bloque de swifmail asi:
+
+```
+###> symfony/swiftmailer-bundle ###
+# For Gmail as a transport, use: "gmail://username:password@localhost"
+# For a generic SMTP server, use: "smtp://localhost:25?encryption=&auth_mode="
+# Delivery is disabled by default via "null://localhost"
+MAILER_URL=gmail://paycowallet@gmail.com:paycowallet123@localhost
+###< symfony/swiftmailer-bundle ###
 ```
 
 
