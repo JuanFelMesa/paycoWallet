@@ -14,7 +14,7 @@ Debe tener instalado:
 Composer
 MySql Server
 Linux
-PHP < 5.X
+PHP > 5.X
 Apache server
 ```
 
