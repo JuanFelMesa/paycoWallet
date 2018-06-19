@@ -4,7 +4,7 @@ Este es un desarrollo de prueba para PAYCO
 
 ## Notas iniciales:
 
-Este proyecto está diseñado para correr en un ambiente LAMP
+Este proyecto está diseñado para correr en un ambiente LAMP con Symfony 4.0
 
 ### Prerrequisitos
 
@@ -13,12 +13,9 @@ Debe tener instalado:
 ```
 Composer
 MySql Server
-NodeJs
-NPM
-Express
 Linux
-PHP
-Apache
+PHP < 5.X
+Apache server
 ```
 
 ### Instalación
@@ -35,8 +32,8 @@ Ejemplo de virtual host:
 <VirtualHost *:80>
     ServerName nombre del servidor dado en /etc/hosts
     ServerAlias alias (recomendado el mismo ServerName)
-    DocumentRoot /Ruta/Hasta/El/Proyecto/paycoTest/soap/public
-    <Directory /Ruta/Hasta/El/Proyecto/paycoTest/soap/public>
+    DocumentRoot /Ruta/Hasta/El/Proyecto/paycoWallet/soap/public
+    <Directory /Ruta/Hasta/El/Proyecto/paycoWallet/soap/public>
         AllowOverride None
         Order Allow,Deny
         Allow from All
@@ -75,7 +72,7 @@ git clone https://github.com/ju4nr3v0l/paycoWallet.git
 Paso 2
 
 ```
-cd /soap
+cd /paycoWallet/soap
 ```
 
 Paso 3
@@ -111,11 +108,7 @@ Paso 7
 php bin console doctrine:schema:update --force
 ```
 
-Paso 8
 
-```
-php bin console doctrine:fixtures:load --append
-```
 
 
 

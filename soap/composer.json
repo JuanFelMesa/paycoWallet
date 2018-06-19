@@ -6,6 +6,9 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/doctrine-fixtures-bundle": "^3.0",
+        "econea/nusoap": "~0.9.5.1",
+        "friendsofsymfony/rest-bundle": "^2.3",
+        "jms/serializer-bundle": "^2.3",
         "nelmio/cors-bundle": "^1.5",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/apache-pack": "^1.0",
@@ -21,10 +24,8 @@
         "symfony/security-http": "^4.0",
         "symfony/serializer": "^4.0",
         "symfony/swiftmailer-bundle": "^3.2",
-        "symfony/yaml": "^4.1",
-        "econea/nusoap":"~0.9.5.1",
-        "friendsofsymfony/rest-bundle":"^2.3",
-        "jms/serializer-bundle": "^2.3"
+        "symfony/translation": "^4.1",
+        "symfony/yaml": "^4.1"
     },
     "require-dev": {
         "symfony/dotenv": "^4.1"
