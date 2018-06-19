@@ -84,13 +84,13 @@ Paso 3
 composer install
 ```
 
-Paso 3
+Paso 4
 
 ```
 composer update
 ```
 
-Paso 4
+Paso 5
 
 En la raiz del proyecto modificar en el archivo .env la linea que se describe a continuación con sus datos de conexión a su servidor MySql y el nombre de la base de datos
 
@@ -99,19 +99,19 @@ DATABASE_URL=mysql://usuario:contraseña@127.0.0.1:3306/baseDeDatos
 ```
 
 
-Paso 5
+Paso 6
 
 ```
 php bin console doctrine:database:create
 ```
 
-Paso 6
+Paso 7
 
 ```
 php bin console doctrine:schema:update --force
 ```
 
-Paso 7
+Paso 8
 
 ```
 php bin console doctrine:fixtures:load --append
@@ -121,6 +121,12 @@ php bin console doctrine:fixtures:load --append
 
 ## Probando la aplicación
 
+Esta es la doc de la API
 
+```
+https://web.postman.co/collections/2689877-a7097e89-ebab-4627-937a-92de689539a6?workspace=2e09dd1b-432b-4d69-8fa1-187fbf21788a
+```
+
+Usando los endPoints con los ejemplos se puede iniciar el testeo de la app.
 
 

@@ -443,10 +443,6 @@
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Service" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="soap" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restApi" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -557,7 +553,7 @@
       <workItem from="1529200412768" duration="13844000" />
       <workItem from="1529251803102" duration="11938000" />
       <workItem from="1529326103366" duration="24502000" />
-      <workItem from="1529369930852" duration="13855000" />
+      <workItem from="1529369930852" duration="14057000" />
     </task>
     <task id="LOCAL-00001" summary="inicio de la estructura del proycto y servicio SOAP oara usuario:funcionCrearUsuario">
       <created>1529334427691</created>
@@ -612,7 +608,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70254000" />
+    <option name="totallyTimeSpent" value="70456000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1602" height="873" extended-state="6" />
@@ -628,7 +624,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3986207" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3986207" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
