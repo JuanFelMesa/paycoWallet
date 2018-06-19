@@ -99,13 +99,13 @@ DATABASE_URL=mysql://usuario:contraseña@127.0.0.1:3306/baseDeDatos
 Paso 6
 
 ```
-php bin console doctrine:database:create
+php bin/console doctrine:database:create
 ```
 
 Paso 7
 
 ```
-php bin console doctrine:schema:update --force
+php bin/console doctrine:schema:update --force
 ```
 
 
