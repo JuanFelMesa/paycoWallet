@@ -10,11 +10,13 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 
 
 
+
 class PagoService
 {
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager,\Swift_Mailer $mailer)
     {
         $this->em = $entityManager;
+        $this->mailer = $mailer;
     }
 
     public function realizarPago($identificacion, $valor){
@@ -49,6 +51,7 @@ class PagoService
 
                     $response['success'] = true;
                     $response['data'] = 'Se ha generado correctamente el pago por favor validar con el token enviado a su correo y su numero de identificacion';
+
                     $this->enviarCorreo($arUsuario[0]->getCorreo(),$token);
 
                 }else{
@@ -153,7 +156,7 @@ class PagoService
         return $randomString;
     }
 
-    private function enviarCorreo($token,$correo, \Swift_Mailer $mailer){
+    private function enviarCorreo($correo,$token){
             $message = ( new \Swift_Message( 'Token de confirmacion de compra' ) )
             ->setFrom( 'paycowallet@gmail.com' )
             ->setTo( $correo )
@@ -161,6 +164,6 @@ class PagoService
                 $token,
                 'text/html'
             );
-        $mailer->send( $message );
+        $this->mailer->send( $message );
     }
 }
