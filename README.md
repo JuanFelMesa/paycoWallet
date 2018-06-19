@@ -26,12 +26,35 @@ Este es el proceso de instalación para correr la aplicacion server SOAP
 Se recomienda trabajar con virtual hosts debido a que esta aplicación está desarrollada con symfony 4.X
 
 Ejemplo de virtual host:
-(este archivo se crea en /etc/apache2/sites-aviable y se crea un enlace simbólico en /etc/apache2/sites-enabled, luego de modificar estos archivos se debe reiniciar el servicio de apache)
+
+Se debe modificar el archivo /etc/hosts agregando nuestro server (dominio local por el cual queremos acceder)
+
+
+``` 
+127.0.0.1       localhost
+127.0.1.1       Elnombredetuequipo
+
+127.0.0.1       soap.payco.com #nuestro server
+
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+```
+
+Creamos este archivo ```
+                     soap.payco.com.conf
+                     ``` o con el nombre que queramos terminado en .conf y se crea en ```/etc/apache2/sites-aviable 
+                    ```
 
 ```
 <VirtualHost *:80>
-    ServerName nombre del servidor dado en /etc/hosts
-    ServerAlias alias (recomendado el mismo ServerName)
+    ServerName soap.payco.com  #nombre del servidor dado en /etc/hosts
+    ServerAlias soap.payco.com #(recomendado el mismo ServerName)
     DocumentRoot /Ruta/Hasta/El/Proyecto/paycoWallet/soap/public
     <Directory /Ruta/Hasta/El/Proyecto/paycoWallet/soap/public>
         AllowOverride None
@@ -63,31 +86,55 @@ Ejemplo de virtual host:
 
 ```
 
+
+Luego se crea un enlace simbólico en /etc/apache2/sites-enabled
+
+```
+sudo ln -s /etc/apache2/sites-available/soap.payco.com.conf /etc/apache2/sites-enabled/soap.payco.com.conf
+
+```
+
+Luego reiniciamos el servicio de apache
+
+```
+sudo service apache2 restart
+```
+
 Paso 1
 
 ```
 git clone https://github.com/ju4nr3v0l/paycoWallet.git
 ```
 
+
 Paso 2
+
+Modificamos nuestro virtual host en ```/etc/apache2/sites-aviable ``` y cambiamos las lineas 
+```
+ DocumentRoot /Ruta/Hasta/El/Proyecto/paycoWallet/soap/public
+ <Directory /Ruta/Hasta/El/Proyecto/paycoWallet/soap/public>
+```
+ por la ruta donde acabamos de clonar nuestro repositorio
+
+Paso 3
 
 ```
 cd /paycoWallet/soap
 ```
 
-Paso 3
+Paso 4
 
 ```
 composer install
 ```
 
-Paso 4
+Paso 5
 
 ```
 composer update
 ```
 
-Paso 5
+Paso 6
 
 En la raiz del proyecto modificar en el archivo .env la linea que se describe a continuación con sus datos de conexión a su servidor MySql y el nombre de la base de datos. 
 
@@ -95,7 +142,7 @@ En la raiz del proyecto modificar en el archivo .env la linea que se describe a 
 DATABASE_URL=mysql://usuario:contraseña@127.0.0.1:3306/baseDeDatos
 ```
 
-Además se debe modificar el bloque de swiftmailer asi:
+Además se debe modificar el bloque de swiftmailer asi: (copiar y pegar. Eliminar el bloque preexistente en el archivo)
 
 ```
 ###> symfony/swiftmailer-bundle ###
@@ -107,13 +154,13 @@ MAILER_URL=gmail://paycowallet@gmail.com:paycowallet123@localhost
 ```
 
 
-Paso 6
+Paso 7
 
 ```
 php bin/console doctrine:database:create
 ```
 
-Paso 7
+Paso 8
 
 ```
 php bin/console doctrine:schema:update --force
