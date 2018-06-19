@@ -16,11 +16,11 @@ class UsuarioRepository  extends ServiceEntityRepository
     }
 
 
-    public function validarUsuario($correo,$identificacion){
+    public function validaUsuarioCorreo($correo){
         $em = $this->getEntityManager();
-        $usuarioIdentificacion = $em->getRepository('App:Usuario\Usuario')->findBy(array('numeroIdentificacion'=>$identificacion));
-        $usuarioCorreo = $em->getRepository('App:Usuario\Usuario')->findBy(array('correo'=>$correo));
-        if ($usuarioIdentificacion && $usuarioCorreo){
+
+        $usuario = $em->getRepository('App:Usuario\Usuario')->findBy(array('correo'=>$correo));
+        if ($usuario){
             return true;
         }
         else {
@@ -28,5 +28,38 @@ class UsuarioRepository  extends ServiceEntityRepository
         }
     }
 
+    public function validaUsuarioIdentificacion($identificacion){
+        $em = $this->getEntityManager();
+
+        $usuario = $em->getRepository('App:Usuario\Usuario')->findBy(array('numeroIdentificacion'=>$identificacion));
+        if ($usuario){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function validaUsuarioCelular($celular){
+        $em = $this->getEntityManager();
+
+        $usuario = $em->getRepository('App:Usuario\Usuario')->findBy(array('celular'=>$celular));
+        if ($usuario){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function encontrarUsuarioPorIdentificacion($id){
+        $em = $this->getEntityManager();
+        $arUsuario = $em->getRepository('App:Usuario\Usuario')->findBy(array('numeroIdentificacion'=>$id));
+        if($arUsuario){
+            return $arUsuario;
+        } else {
+            return false;
+        }
+    }
 
 }

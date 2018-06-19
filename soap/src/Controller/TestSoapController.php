@@ -19,22 +19,23 @@ class TestSoapController extends Controller
     public function test(Request $request){
 
         // Config
-        $client = new nusoap_client('http://soap.payco.com/index.php/usuario/soap?wsdl', 'wsdl');
-        $client->setEndpoint('http://soap.payco.com/index.php/usuario/soap');
+        $client = new nusoap_client('http://soap.payco.com/index.php/billetera/soap?wsdl', 'wsdl');
+        $client->setEndpoint('http://soap.payco.com/index.php/billetera/soap');
 
         $client->decode_utf8 = true;
 
         // Calls
-        $result = $client->call('crearusuario', array(
-            'nombre'=>  'Juan David Marulanda V.',
-            'correo' => 'juandavidmarulanda@yahoo.com',
+        $result = $client->call('recargarbilletera', array(
+
+
+            'celular'=>'3185668227',
             'numeroIdentificacion' => '15371377',
-            'celular'=>'3185668227'
+            'valor'=>  10000,
 
 
         ));
 
 
-        return $result;
+        return new Response($client->responseData);
     }
 }
