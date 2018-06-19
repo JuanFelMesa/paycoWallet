@@ -77,10 +77,11 @@ class PagoService
     }
 
     public function confirmarPago($identificacion, $token){
+
         $response = array('success' => false,
             'cod_error' => '',
             'message_error' => '');
-        if($identificacion != null){
+        if($identificacion != null && $token != null){
             try{
                 $validarIdentificacion =$this->em->getRepository('App:Usuario\Usuario')->validaUsuarioIdentificacion($identificacion);
                 if($validarIdentificacion){
@@ -98,19 +99,30 @@ class PagoService
                                 $response['success'] = false;
                                 $response['cod_error'] = 417;
                                 $response['message_error'] = 'No se puede pagar, saldo insuficiente o token inexistente';
+                            } else {
+                                if(!$arPago[0]->getConfirmado()){
+                                    $arPago[0]->setConfirmado(true);
+                                    $valorPago = $arPago[0]->getValor();
+                                    $saldoActual = $arBilletera[0]->getSaldo();
+                                    $saldoActual -= $valorPago;
+                                    $arBilletera[0]->setSaldo($saldoActual);
+                                    $this->em->persist($arBilletera[0]);
+                                    $this->em->flush();
+                                    $response['success'] = true;
+                                    $response['cod_error'] = '';
+                                    $response['message_error'] = 'Se ha realizado el pago correctamente.';
+                                } else {
+                                    $response['success'] = false;
+                                    $response['cod_error'] = 417;
+                                    $response['message_error'] = 'El pago ya se encuentra confirmado';
+                                }
+
                             }
 
                         }else{
-                            $arPago[0]->setVerificado(true);
-                            $valorPago = $arPago[0]->getValor();
-                            $saldoActual = $arBilletera[0]->getSaldo();
-                            $saldoActual -= $valorPago;
-                            $arBilletera[0]->setSaldo($saldoActual);
-                            $this->em->persist($arBilletera[0]);
-                            $this->em->flush();
-                            $response['success'] = true;
-                            $response['cod_error'] = '';
-                            $response['message_error'] = 'Se ha realizado el pago correctamente.';
+                            $response['success'] = false;
+                            $response['cod_error'] = 417;
+                            $response['message_error'] = 'No se puede pagar, no coincide el token';
                         }
                     } else{
                         $response['success'] = false;
