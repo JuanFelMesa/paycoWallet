@@ -23,7 +23,7 @@ Apache server
 
 Este es el proceso de instalación para correr la aplicacion server SOAP
 
-Se recomienda trabajar con virtual hosts debido a que esta aplicación está desarrollada con symfony 4.0
+Se recomienda trabajar con virtual hosts debido a que esta aplicación está desarrollada con symfony 4.X
 
 Ejemplo de virtual host:
 (este archivo se crea en /etc/apache2/sites-aviable y se crea un enlace simbólico en /etc/apache2/sites-enabled, luego de modificar estos archivos se debe reiniciar el servicio de apache)
