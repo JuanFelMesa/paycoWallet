@@ -94,6 +94,12 @@ sudo ln -s /etc/apache2/sites-available/soap.payco.com.conf /etc/apache2/sites-e
 
 ```
 
+Por último habilitamos el módulo de reescritura de apache en caso de no tenerlo habilitado
+
+```
+sudo a2enmod rewrite
+```
+
 Luego reiniciamos el servicio de apache
 
 ```
