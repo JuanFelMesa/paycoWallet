@@ -19,7 +19,7 @@ class UsuarioController extends Controller
     public function crearUsuario(Request $request,UsuarioService $usuarioService)
     {
 
-        $soapServer = new \SoapServer('http://soap.payco.com/wsdl/usuario.wsdl');
+        $soapServer = new \SoapServer($this->get('kernel')->getProjectDir() . '/public/wsdl/usuario.wsdl');
 
         $soapServer->setObject($usuarioService);
 

@@ -16,29 +16,29 @@
         </xsd:schema>
     </types>
 
-    <message name="recargarbilleteraRequest">
+    <message name="consultarbilleteraRequest">
         <part name="numeroIdentificacion" type="xsd:string" />
         <part name="celular" type="xsd:string" />
-        <part name="valor" type="xsd:integer" />
+       
 
     </message>
 
-    <message name="recargarbilleteraResponse">
+    <message name="consultarbilleteraResponse">
         <part name="response" type="xsd:string" />
     </message>
 
     <portType name="billeterawsdlPortType">
-        <operation name="recargarbilletera">
+        <operation name="consultarbilletera">
             <documentation>billetera SOAP</documentation>
-            <input message="tns:recargarbilleteraRequest"/>
-            <output message="tns:recargarbilleteraResponse"/>
+            <input message="tns:consultarbilleteraRequest"/>
+            <output message="tns:consultarbilleteraResponse"/>
         </operation>
     </portType>
 
     <binding name="billeterawsdlBinding" type="tns:billeterawsdlPortType">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <operation name="recargarbilletera">
-            <soap:operation soapAction="urn:arnleadservicewsdl#recargarbilletera" style="rpc"/>
+        <operation name="consultarbilletera">
+            <soap:operation soapAction="urn:arnleadservicewsdl#consultarbilletera" style="rpc"/>
 
             <input>
                 <soap:body use="encoded" namespace="urn:billeterawsdl"
@@ -54,7 +54,7 @@
 
     <service name="billeterawsdl">
         <port name="billeterawsdlPort" binding="tns:billeterawsdlBinding">
-            <soap:address location="http://soap.payco.com/billetera/soap/recargar" />
+            <soap:address location="http://soap.payco.com/billetera/soap/consultar" />
         </port>
     </service>
 </definitions>

@@ -4,10 +4,9 @@ namespace App\Service;
 
 
 use App\Entity\Usuario\Usuario;
-use App\Entity\Billetera\Billetera;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Config\Definition\Exception\Exception;
-use App\Repository\Usuario\UsuarioRepository;
+
 
 
 class BilleteraService
@@ -58,7 +57,38 @@ class BilleteraService
         return json_encode($response);
     }
 
-    public function consultarBilletera($nombre,$celular,$correo,$identificacion){
+    public function consultarBilletera($identificacion,$celular){
+        $response = array('success' => false,
+            'cod_error' => '',
+            'message_error' => '');
+        if($identificacion != null && $celular != null){
+            try{
+                $validarIdentificacion =$this->em->getRepository('App:Usuario\Usuario')->validaUsuarioIdentificacion($identificacion);
+                $validarCelular =$this->em->getRepository('App:Usuario\Usuario')->validaUsuarioCelular($celular);
+                if($validarIdentificacion && $validarCelular){
+                    $arUsuario =   $arUsuario  = $this->em->getRepository('App:Usuario\Usuario')->findBy(array('numeroIdentificacion'=>$identificacion));
+                    $saldo = $arUsuario[0]->getBilleteraRel()->getSaldo();
+                    $response['success'] = true;
+                    $response['cod_error'] = '';
+                    $response['message_error'] = '';
+                    $response['data'] = $saldo;
+                } else{
+                    $response['success'] = false;
+                    $response['cod_error'] = 416;
+                    $response['message_error'] = 'El numero de celular o identificacion no coincide';
+                }
+            }catch (Exception $e){
+                $response['success'] = false;
+                $response['cod_error'] = $e->getCode();
+                $response['message_error'] = $e->getMessage();
+            }
+        } else{
+            $response['success'] = false;
+            $response['message_error'] = 'No se han enviado parámetros';
+            $response['cod_error'] = 415;
+        }
+
+        return json_encode($response);
 
     }
 }
