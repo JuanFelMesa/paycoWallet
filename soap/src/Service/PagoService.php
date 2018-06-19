@@ -46,16 +46,10 @@ class PagoService
                     $arPago->setToken($token);
                     $this->em->persist($arPago);
                     $this->em->flush();
-//                    $message = ( new \Swift_Message( 'Token de confirmacion de compra' ) )
-//                        ->setFrom( 'paycowallet@gmail.com' )
-//                        ->setTo( $arUsuario[0]->getCorreo() )
-//                        ->setBody(
-//                            $token,
-//                            'text/html'
-//                        );
-//                    $mailer->send( $message );
+
                     $response['success'] = true;
                     $response['data'] = 'Se ha generado correctamente el pago por favor validar con el token enviado a su correo y su numero de identificacion';
+                    $this->enviarCorreo($arUsuario[0]->getCorreo(),$token);
 
                 }else{
                     $response['success'] = false;
@@ -159,5 +153,14 @@ class PagoService
         return $randomString;
     }
 
-
+    private function enviarCorreo($token,$correo, \Swift_Mailer $mailer){
+            $message = ( new \Swift_Message( 'Token de confirmacion de compra' ) )
+            ->setFrom( 'paycowallet@gmail.com' )
+            ->setTo( $correo )
+            ->setBody(
+                $token,
+                'text/html'
+            );
+        $mailer->send( $message );
+    }
 }
