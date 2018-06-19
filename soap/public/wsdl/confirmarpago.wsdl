@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:tns="urn:arnleadservicewsdl"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             targetNamespace="urn:pagoservicewsdl">
+
+    <types>
+        <xsd:schema targetNamespace="urn:pagowsdl">
+            <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+            <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+        </xsd:schema>
+    </types>
+
+    <message name="confirmarpagoRequest">
+        <part name="numeroIdentificacion" type="xsd:string" />
+        <part name="token" type="xsd:string" />
+    </message>
+
+    <message name="confirmarpagoResponse">
+        <part name="response" type="xsd:string" />
+    </message>
+
+    <portType name="pagowsdlPortType">
+        <operation name="confirmarpago">
+            <documentation>pago SOAP</documentation>
+            <input message="tns:confirmarpagoRequest"/>
+            <output message="tns:confirmarpagoResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="pagowsdlBinding" type="tns:pagowsdlPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="confirmarpago">
+            <soap:operation soapAction="urn:arnleadservicewsdl#confirmarpago" style="rpc"/>
+
+            <input>
+                <soap:body use="encoded" namespace="urn:pagowsdl"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+
+            <output>
+                <soap:body use="encoded" namespace="urn:pagowsdl"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="pagowsdl">
+        <port name="pagowsdlPort" binding="tns:pagowsdlBinding">
+            <soap:address location="http://soap.payco.com/pago/soap/consultar" />
+        </port>
+    </service>
+</definitions>

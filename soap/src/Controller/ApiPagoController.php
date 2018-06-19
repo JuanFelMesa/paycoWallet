@@ -7,19 +7,19 @@ use FOS\RestBundle\Controller\FOSRestController;
 use nusoap_client;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class ApiBilleteraController extends FOSRestController {
+class ApiPagoController extends FOSRestController {
 
 
     /**
-     * @Rest\Post("/api/billetera/recargar")
+     * @Rest\Post("/api/pago/pagar")
      */
-    public function recargarBilletera( Request $request) {
+    public function realizarPago( Request $request) {
 
         set_time_limit(0);
         ini_set("memory_limit", -1);
 
-        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/index.php/billetera/soap/recargar?wsdl', 'wsdl');
-        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/index.php/billetera/soap/recargar');
+        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/index.php/pago/soap/pagar?wsdl', 'wsdl');
+        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/index.php/pago/soap/pagar');
 
         $client->decode_utf8 = true;
 
@@ -29,15 +29,13 @@ class ApiBilleteraController extends FOSRestController {
             'cod_error' => '',
             'message_error' =>'',
             'data'=>[]);
-        $em = $this->getDoctrine()->getManager();
         $data = json_decode($request->getContent('data'), true);
         $data = $data['data'];
         if ($data != null){
             // Calls
-            $result = $client->call('recargarbilletera', array(
-                'numeroIdentificacion' => $data['numeroIdentificacion'],
-                'celular'=> $data['celular'],
-                'valor'=> $data['valor']
+            $result = $client->call('realizarpago', array(
+                'valor' => $data['valor'],
+                'numeroIdentificacion' => $data['numeroIdentificacion']
 
             ));
 
@@ -51,17 +49,17 @@ class ApiBilleteraController extends FOSRestController {
         return new JsonResponse($response);
     }
 
+
     /**
-     * @Rest\Post("/api/billetera/consultar")
+     * @Rest\Post("/api/pago/confirmar")
      */
-    public function consultarBilletera( Request $request) {
+    public function confirmarPago( Request $request) {
 
         set_time_limit(0);
         ini_set("memory_limit", -1);
 
-
-        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/index.php/billetera/soap/consultar?wsdl', 'wsdl');
-        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/index.php/billetera/soap/consultar');
+        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/index.php/pago/soap/pagar?wsdl', 'wsdl');
+        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/index.php/pago/soap/pagar');
 
         $client->decode_utf8 = true;
 
@@ -71,14 +69,14 @@ class ApiBilleteraController extends FOSRestController {
             'cod_error' => '',
             'message_error' =>'',
             'data'=>[]);
-        $em = $this->getDoctrine()->getManager();
         $data = json_decode($request->getContent('data'), true);
         $data = $data['data'];
         if ($data != null){
             // Calls
-            $result = $client->call('consultarbilletera', array(
-                'numeroIdentificacion' => $data['numeroIdentificacion'],
-                'celular'=> $data['celular']
+            $result = $client->call('confirmarpago', array(
+                'token' => $data['token'],
+                'numeroIdentificacion' => $data['numeroIdentificacion']
+
             ));
 
             $response = json_decode($result);
@@ -90,6 +88,8 @@ class ApiBilleteraController extends FOSRestController {
         }
         return new JsonResponse($response);
     }
+
+
 
 
 

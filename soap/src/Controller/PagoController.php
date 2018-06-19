@@ -7,21 +7,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Service\BilleteraService;
+use App\Service\PagoService;
 
 
 
-class RecargarBilleteraController extends Controller
+class PagoController extends Controller
 {
     /**
-     * @Route("/billetera/soap/recargar",name="billeteraRecargar")
+     * @Route("/pago/soap/pagar",name="pagar")
      */
-    public function recargarBilletera(Request $request,BilleteraService $billeteraService)
+    public function realizarPago(Request $request,PagoService $pagoService)
     {
 
-        $soapServer = new \SoapServer('http://'.$_SERVER['HTTP_HOST'].'/wsdl/billetera.wsdl');
+        $soapServer = new \SoapServer('http://'.$_SERVER['HTTP_HOST'].'/wsdl/realizarpago.wsdl');
 
-        $soapServer->setObject($billeteraService);
+        $soapServer->setObject($pagoService);
 
         $response = new Response();
         $response->headers->set('Content-Type', 'text/xml:text/xml; charset=UTF-8');
@@ -35,14 +35,14 @@ class RecargarBilleteraController extends Controller
 
     }
     /**
-     * @Route("/billetera/soap/consultar",name="billeteraConsultar")
+     * @Route("/pago/soap/confirmar",name="pagoConfirmar")
      */
-    public function consultarBilletera(Request $request,BilleteraService $billeteraService)
+    public function confirmarPago(Request $request,PagoService $pagoService)
     {
 
-        $soapServer = new \SoapServer('http://'.$_SERVER['HTTP_HOST'].'/wsdl/consultarbilletera.wsdl');
+        $soapServer = new \SoapServer('http://'.$_SERVER['HTTP_HOST'].'/wsdl/confirmarpago.wsdl');
 
-        $soapServer->setObject($billeteraService);
+        $soapServer->setObject($pagoService);
 
         $response = new Response();
         $response->headers->set('Content-Type', 'text/xml:text/xml; charset=UTF-8');
