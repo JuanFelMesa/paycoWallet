@@ -95,7 +95,7 @@ class PagoService
                             if(($arBilletera[0]->getSaldo() - $valorPago ) < 0){
                                 $response['success'] = false;
                                 $response['cod_error'] = 417;
-                                $response['message_error'] = 'No se puede pagar, saldo insuficiente o token inexistente';
+                                $response['message_error'] = 'No se puede pagar, saldo insuficiente';
                             } else {
                                 if(!$arPago[0]->getConfirmado()){
                                     $arPago[0]->setConfirmado(true);
