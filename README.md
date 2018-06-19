@@ -95,7 +95,7 @@ En la raiz del proyecto modificar en el archivo .env la linea que se describe a 
 DATABASE_URL=mysql://usuario:contraseña@127.0.0.1:3306/baseDeDatos
 ```
 
-Además se debe modificar el bloque de swifmail asi:
+Además se debe modificar el bloque de swiftmailer asi:
 
 ```
 ###> symfony/swiftmailer-bundle ###
