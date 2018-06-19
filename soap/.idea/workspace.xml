@@ -4,14 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/Controller/ApiPagoController.php" line="21" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3f7f84d-34ba-461f-a977-16e32507fd51" name="Default" comment="creacion de usuario via SOAP servicio terminado">
-      <change beforePath="$PROJECT_DIR$/../restApi/.idea/restApi.iml" afterPath="$PROJECT_DIR$/../restApi/.idea/restApi.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/soap.iml" afterPath="$PROJECT_DIR$/.idea/soap.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" afterPath="$PROJECT_DIR$/symfony.lock" />
-    </list>
+    <list default="true" id="c3f7f84d-34ba-461f-a977-16e32507fd51" name="Default" comment="creacion de usuario via SOAP servicio terminado" />
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -564,7 +557,7 @@
       <workItem from="1529200412768" duration="13844000" />
       <workItem from="1529251803102" duration="11938000" />
       <workItem from="1529326103366" duration="24502000" />
-      <workItem from="1529369930852" duration="13774000" />
+      <workItem from="1529369930852" duration="13855000" />
     </task>
     <task id="LOCAL-00001" summary="inicio de la estructura del proycto y servicio SOAP oara usuario:funcionCrearUsuario">
       <created>1529334427691</created>
@@ -619,7 +612,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70173000" />
+    <option name="totallyTimeSpent" value="70254000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1602" height="873" extended-state="6" />
