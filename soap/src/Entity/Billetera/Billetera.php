@@ -34,7 +34,7 @@ class Billetera
     private $usuarioRel;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Pago\Pago", mappedBy="billeteraRel")
+     * @ORM\OneToMany(targetEntity="App\Entity\Pago\Pago", mappedBy="billeteraRel")
      */
     private $pagoRel;
 

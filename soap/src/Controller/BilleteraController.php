@@ -11,7 +11,7 @@ use App\Service\BilleteraService;
 
 
 
-class RecargarBilleteraController extends Controller
+class BilleteraController extends Controller
 {
     /**
      * @Route("/billetera/soap/recargar",name="billeteraRecargar")

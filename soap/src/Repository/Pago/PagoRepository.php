@@ -12,7 +12,7 @@ class PagoRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Usuario::class);
+        parent::__construct($registry, Pago::class);
     }
 
 

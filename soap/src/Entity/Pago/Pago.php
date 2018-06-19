@@ -38,7 +38,7 @@ class Pago
     private $confirmado = false;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Billetera\Billetera", inversedBy="pagoRel")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Billetera\Billetera", inversedBy="pagoRel")
      * @ORM\JoinColumn(name="codigo_billetera_fk", referencedColumnName="codigo_billetera_pk")
      */
     private $billeteraRel;

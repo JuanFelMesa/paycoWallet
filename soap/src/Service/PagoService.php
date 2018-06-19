@@ -88,18 +88,25 @@ class PagoService
 
                     $arBilletera  = $this->em->getRepository("App:Billetera\Billetera")->findBy(array('codigoUsuarioFk'=>$arUsuario[0]->getCodigoUsuarioPk()));
 
-                    $arPago =  $this->em->getRepository("App:Pago\Pago")->findBy(array('codigoBilleteraFk'=>$arBilletera[0]->getCodigoBilleteraPk()));
-                    $valorPago = $arPago->getValor();
-                    if($arPago->getToken() == $token){
-                        if(($arBilletera[0]->getSaldo() - $valorPago ) < 0){
-                            $response['success'] = false;
-                            $response['cod_error'] = 417;
-                            $response['message_error'] = 'No se puede pagar, saldo insuficiente';
+                    $arPago =  $this->em->getRepository("App:Pago\Pago")->findBy(array('token'=>$token));
+
+
+                    if($arPago){
+                        if( $arPago[0]->getToken() == $token){
+                            $valorPago = $arPago[0]->getValor();
+                            if(($arBilletera[0]->getSaldo() - $valorPago ) < 0){
+                                $response['success'] = false;
+                                $response['cod_error'] = 417;
+                                $response['message_error'] = 'No se puede pagar, saldo insuficiente o token inexistente';
+                            }
+
                         }else{
+                            $arPago[0]->setVerificado(true);
+                            $valorPago = $arPago[0]->getValor();
                             $saldoActual = $arBilletera[0]->getSaldo();
                             $saldoActual -= $valorPago;
-                            $arBilletera->setSaldo($saldoActual);
-                            $this->em->persist($arBilletera);
+                            $arBilletera[0]->setSaldo($saldoActual);
+                            $this->em->persist($arBilletera[0]);
                             $this->em->flush();
                             $response['success'] = true;
                             $response['cod_error'] = '';
@@ -122,6 +129,7 @@ class PagoService
             $response['message_error'] = $e->getMessage();
             }
         }
+        return json_encode($response);
    }
 
     private function generarToken(){

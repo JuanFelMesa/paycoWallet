@@ -58,8 +58,8 @@ class ApiPagoController extends FOSRestController {
         set_time_limit(0);
         ini_set("memory_limit", -1);
 
-        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/index.php/pago/soap/pagar?wsdl', 'wsdl');
-        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/index.php/pago/soap/pagar');
+        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/index.php/pago/soap/confirmar?wsdl', 'wsdl');
+        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/index.php/pago/soap/confirmar');
 
         $client->decode_utf8 = true;
 
