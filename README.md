@@ -181,7 +181,7 @@ php bin/console doctrine:schema:update --force
 Esta es la doc de la API
 
 ```
-https://web.postman.co/collections/2689877-a7097e89-ebab-4627-937a-92de689539a6?workspace=2e09dd1b-432b-4d69-8fa1-187fbf21788a
+https://documenter.getpostman.com/view/2689877/RWEiMJyM
 ```
 
 Usando los endPoints con los ejemplos se puede iniciar el testeo de la app.
