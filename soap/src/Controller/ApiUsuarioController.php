@@ -18,8 +18,8 @@ class ApiUsuarioController extends FOSRestController {
         set_time_limit(0);
         ini_set("memory_limit", -1);
 
-        $client = new nusoap_client('http://soap.payco.com/index.php/usuario/soap?wsdl', 'wsdl');
-        $client->setEndpoint('http://soap.payco.com/index.php/usuario/soap');
+        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/index.php/usuario/soap?wsdl', 'wsdl');
+        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/index.php/usuario/soap');
 
         $client->decode_utf8 = true;
 
@@ -36,22 +36,20 @@ class ApiUsuarioController extends FOSRestController {
             // Calls
             $result = $client->call('crearusuario', array(
                 'nombre'=>  $data['nombre'],
+                'celular'=> $data['celular'],
                 'correo' => $data['correo'],
-                'numeroIdentificacion' => $data['numeroIdentificacion'],
-                'celular'=> $data['celular']
-
+                'numeroIdentificacion' => $data['numeroIdentificacion']
             ));
 
             $response = json_decode($result);
 
         } else {
             $response['success'] = false;
-            $response[ 'cod_error']=415;
-            $response[ 'message_error']='no se ha enviado ningun dato';
+            $response['cod_error']=415;
+            $response['message_error']='no se ha enviado ningun dato';
         }
+
         return new JsonResponse($response);
     }
-
-
 
 }

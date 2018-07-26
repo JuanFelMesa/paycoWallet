@@ -54,7 +54,7 @@
 
     <service name="billeterawsdl">
         <port name="billeterawsdlPort" binding="tns:billeterawsdlBinding">
-            <soap:address location="http://soap.payco.com/billetera/soap/recargar" />
+            <soap:address location="http://wallet.local.com/billetera/soap/recargar" />
         </port>
     </service>
 </definitions>

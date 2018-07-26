@@ -19,7 +19,7 @@ class PagoController extends Controller
     public function realizarPago(Request $request,PagoService $pagoService)
     {
 
-        $soapServer = new \SoapServer('http://'.$_SERVER['HTTP_HOST'].'/wsdl/realizarpago.wsdl');
+        $soapServer = new \SoapServer($this->get('kernel')->getProjectDir().'/wsdl/realizarpago.wsdl');
 
         $soapServer->setObject($pagoService);
 

@@ -52,7 +52,7 @@
 
     <service name="pagowsdl">
         <port name="pagowsdlPort" binding="tns:pagowsdlBinding">
-            <soap:address location="http://soap.payco.com/pago/soap/consultar" />
+            <soap:address location="http://wallet.local.com/pago/soap/consultar" />
         </port>
     </service>
 </definitions>

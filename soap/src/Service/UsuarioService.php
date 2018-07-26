@@ -60,7 +60,7 @@ class UsuarioService
                 $response['cod_error'] = 415;
              }
 
-                 return json_encode($response);
+            return json_encode($response);
 
     }
 }

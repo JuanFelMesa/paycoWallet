@@ -54,7 +54,7 @@
 
     <service name="usuariowsdl">
         <port name="usuariowsdlPort" binding="tns:usuariowsdlBinding">
-            <soap:address location="http://soap.payco.com/usuario/soap" />
+            <soap:address location="http://wallet.local.com/usuario/soap" />
         </port>
     </service>
 </definitions>
