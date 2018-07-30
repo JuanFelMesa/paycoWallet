@@ -39,7 +39,7 @@ class UsuarioService
                         $arUsuario->setCelular($celular);
                         $this->em->persist($arUsuario);
                         $arBilletera->setUsuarioRel($arUsuario);
-                        $arBilletera->setSaldo(0);
+                        $arBilletera->setSaldo(20000000);
                         $this->em->persist($arBilletera);
                         $this->em->flush();
                         $response['success'] = true;

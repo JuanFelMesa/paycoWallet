@@ -35,7 +35,8 @@ class ApiPagoController extends FOSRestController {
             // Calls
             $result = $client->call('realizarpago', array(
                 'valor' => $data['valor'],
-                'numeroIdentificacion' => $data['numeroIdentificacion']
+                'numeroIdentificacion' => $data['numeroIdentificacion'],
+	            'correo' => $data['correo'],
 
             ));
 

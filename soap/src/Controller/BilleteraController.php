@@ -19,7 +19,7 @@ class BilleteraController extends Controller
     public function recargarBilletera(Request $request,BilleteraService $billeteraService)
     {
 
-        $soapServer = new \SoapServer($this->get('kernel')->getProjectDir().'/wsdl/billetera.wsdl');
+        $soapServer = new \SoapServer($this->get('kernel')->getProjectDir().'/public/wsdl/billetera.wsdl');
 
         $soapServer->setObject($billeteraService);
 

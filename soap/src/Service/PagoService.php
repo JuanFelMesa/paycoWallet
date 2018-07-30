@@ -19,7 +19,7 @@ class PagoService
         $this->mailer = $mailer;
     }
 
-    public function realizarPago($identificacion, $valor){
+    public function realizarPago($identificacion, $valor,$correo){
         /**
          * @var Usuario $arUsuario
          */
@@ -28,7 +28,7 @@ class PagoService
         $response = array('success' => false,
             'cod_error' => '',
             'message_error' => '');
-        if($identificacion != null && $valor != null){
+        if($identificacion != null && $valor != null && $correo != null){
 
             try{
 
@@ -52,7 +52,7 @@ class PagoService
                     $response['success'] = true;
                     $response['data'] = 'Se ha generado correctamente el pago por favor validar con el token enviado a su correo y su numero de identificacion';
 
-                    $this->enviarCorreo($arUsuario[0]->getCorreo(),$token);
+                    $this->enviarCorreo($correo,$token);
 
                 }else{
                     $response['success'] = false;

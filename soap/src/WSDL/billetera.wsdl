@@ -7,53 +7,54 @@
              xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
              xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
              xmlns="http://schemas.xmlsoap.org/wsdl/"
-             targetNamespace="urn:pagoservicewsdl">
+             targetNamespace="urn:billeteraservicewsdl">
 
     <types>
-        <xsd:schema targetNamespace="urn:pagowsdl">
+        <xsd:schema targetNamespace="urn:billeterawsdl">
             <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
             <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
         </xsd:schema>
     </types>
 
-    <message name="realizarpagoRequest">
+    <message name="recargarbilleteraRequest">
         <part name="numeroIdentificacion" type="xsd:string" />
-        <part name="valor" type="xsd:string" />
-        <part name="correo" type="xsd:string" />
+        <part name="celular" type="xsd:string" />
+        <part name="valor" type="xsd:integer" />
+
     </message>
 
-    <message name="realizarpagoResponse">
+    <message name="recargarbilleteraResponse">
         <part name="response" type="xsd:string" />
     </message>
 
-    <portType name="pagowsdlPortType">
-        <operation name="realizarpago">
-            <documentation>pago SOAP</documentation>
-            <input message="tns:realizarpagoRequest"/>
-            <output message="tns:realizarpagoResponse"/>
+    <portType name="billeterawsdlPortType">
+        <operation name="recargarbilletera">
+            <documentation>billetera SOAP</documentation>
+            <input message="tns:recargarbilleteraRequest"/>
+            <output message="tns:recargarbilleteraResponse"/>
         </operation>
     </portType>
 
-    <binding name="pagowsdlBinding" type="tns:pagowsdlPortType">
+    <binding name="billeterawsdlBinding" type="tns:billeterawsdlPortType">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <operation name="realizarpago">
-            <soap:operation soapAction="urn:arnleadservicewsdl#realizarpago" style="rpc"/>
+        <operation name="recargarbilletera">
+            <soap:operation soapAction="urn:arnleadservicewsdl#recargarbilletera" style="rpc"/>
 
             <input>
-                <soap:body use="encoded" namespace="urn:pagowsdl"
+                <soap:body use="encoded" namespace="urn:billeterawsdl"
                            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
             </input>
 
             <output>
-                <soap:body use="encoded" namespace="urn:pagowsdl"
+                <soap:body use="encoded" namespace="urn:billeterawsdl"
                            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
             </output>
         </operation>
     </binding>
 
-    <service name="pagowsdl">
-        <port name="pagowsdlPort" binding="tns:pagowsdlBinding">
-            <soap:address location="http://wallet.local.com/pago/soap/consultar" />
+    <service name="billeterawsdl">
+        <port name="billeterawsdlPort" binding="tns:billeterawsdlBinding">
+            <soap:address location="http://wallet.local.com/billetera/soap/recargar" />
         </port>
     </service>
 </definitions>

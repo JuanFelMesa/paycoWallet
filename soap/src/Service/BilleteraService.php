@@ -31,16 +31,17 @@ class BilleteraService
                 $validarCelular =$this->em->getRepository('App:Usuario\Usuario')->validaUsuarioCelular($celular);
                 if($validarIdentificacion && $validarCelular){
 
-                    $arUsuario  = $this->em->getRepository('App:Usuario\Usuario')->findBy(array('numeroIdentificacion'=>$identificacion));
+                    $arUsuario  = $this->em->getRepository('App:Usuario\Usuario')->findOneBy(array('numeroIdentificacion'=>$identificacion));
 
-                    $arBilletera  = $this->em->getRepository("App:Billetera\Billetera")->findBy(array('codigoUsuarioFk'=>$arUsuario[0]->getCodigoUsuarioPk()));
-                    $saldoActual = $arBilletera[0]->getSaldo();
+                    $arBilletera  = $this->em->getRepository("App:Billetera\Billetera")->findOneBy(array('codigoUsuarioFk'=>$arUsuario->getCodigoUsuarioPk()));
+                    $saldoActual = $arBilletera->getSaldo();
                     $saldoFinal = (integer)$saldoActual + (integer)$valor;
-                    $arBilletera[0]->setSaldo($saldoFinal);
-                    $this->em->persist($arBilletera[0]);
+                    $arBilletera->setSaldo($saldoFinal);
+                    $this->em->persist($arBilletera);
                     $this->em->flush();
                     $response['success'] = true;
-                    $response['data'] = 'Se ha recargado la billetera satisfactoriamente, el nuevo saldo es '. $arBilletera[0]->getSaldo();
+                    $response['data'] = 'Se ha recargado la billetera satisfactoriamente, el nuevo saldo es '. $arBilletera->getSaldo();
+
 
                 }
             } catch (Exception $e){
@@ -66,8 +67,8 @@ class BilleteraService
                 $validarIdentificacion =$this->em->getRepository('App:Usuario\Usuario')->validaUsuarioIdentificacion($identificacion);
                 $validarCelular =$this->em->getRepository('App:Usuario\Usuario')->validaUsuarioCelular($celular);
                 if($validarIdentificacion && $validarCelular){
-                    $arUsuario =   $arUsuario  = $this->em->getRepository('App:Usuario\Usuario')->findBy(array('numeroIdentificacion'=>$identificacion));
-                    $saldo = $arUsuario[0]->getBilleteraRel()->getSaldo();
+                    $arUsuario =   $arUsuario  = $this->em->getRepository('App:Usuario\Usuario')->findOneBy(array('numeroIdentificacion'=>$identificacion));
+                    $saldo = $arUsuario->getBilleteraRel()->getSaldo();
                     $response['success'] = true;
                     $response['cod_error'] = '';
                     $response['message_error'] = '';

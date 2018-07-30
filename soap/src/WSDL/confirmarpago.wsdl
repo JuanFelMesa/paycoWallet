@@ -16,28 +16,27 @@
         </xsd:schema>
     </types>
 
-    <message name="realizarpagoRequest">
+    <message name="confirmarpagoRequest">
         <part name="numeroIdentificacion" type="xsd:string" />
-        <part name="valor" type="xsd:string" />
-        <part name="correo" type="xsd:string" />
+        <part name="token" type="xsd:string" />
     </message>
 
-    <message name="realizarpagoResponse">
+    <message name="confirmarpagoResponse">
         <part name="response" type="xsd:string" />
     </message>
 
     <portType name="pagowsdlPortType">
-        <operation name="realizarpago">
+        <operation name="confirmarpago">
             <documentation>pago SOAP</documentation>
-            <input message="tns:realizarpagoRequest"/>
-            <output message="tns:realizarpagoResponse"/>
+            <input message="tns:confirmarpagoRequest"/>
+            <output message="tns:confirmarpagoResponse"/>
         </operation>
     </portType>
 
     <binding name="pagowsdlBinding" type="tns:pagowsdlPortType">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <operation name="realizarpago">
-            <soap:operation soapAction="urn:arnleadservicewsdl#realizarpago" style="rpc"/>
+        <operation name="confirmarpago">
+            <soap:operation soapAction="urn:arnleadservicewsdl#confirmarpago" style="rpc"/>
 
             <input>
                 <soap:body use="encoded" namespace="urn:pagowsdl"
